@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ series.name }}</title>
+</head>
+<body>
+<h1>{{ series.name }}</h1>
+<p>release: {{ series.release_year }}</p>
+<p>status:{{ series.status }}</p>
+<p>rating: {{ series.rating }}</p>
+{% if user.is_authenticated %}
+    {% if inwatchlist %}
+        <form action="{% url 'watchlist:remove_from_watchlist' series.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit">remove from watchlist</button>
+        </form>
+        <a href="{% url 'watchlist:edit' movie.pk %}">edit</a>
+    {% else %}
+        <form action="{% url 'watchlist:add_to_watchlist' series.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit">add to watchlist</button>
+        </form>
+        {% endif %}
+{% endif %}
+<a href="{{ next }}" class="back-button">← Back</a>
+</body>
+</html>

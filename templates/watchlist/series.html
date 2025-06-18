@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Series</title>
+</head>
+<body>
+<h1>Series</h1>
+<ul>
+    {% for item in series %}
+        <li><a href="{% url 'watchlist:series_detail' series.pk %}?next={{ request.path }}">{{ item.name }} ({{ item.release_year }}) -Rating:{{ item.rating }} -Status:{{ item.status }}</a></li>
+    {% empty %}
+        <li>No series yet.</li>
+    {% endfor %}
+
+</ul>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My List</title>
+</head>
+<body>
+<h1>My list</h1>
+<ul>
+    {% for item in films %}
+    <li>{{ item.name }} ({{ item.release_year }}) -Rating: {{ item.rating }} -Status:{{ item.status }}</li>
+    {% empty %}
+        <li>No films yet, add movies or series to your list</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Movies</title>
+</head>
+<body>
+<h1>movies</h1>
+<ul>
+    {% for movie in movies %}
+    <li><a href="{% url 'watchlist:movie_detail' movie.pk %}?next={{ request.path }}"> {{ movie.name }} ({{ movie.release_year }}) -Rating:{{ movie.rating }} -Status:{{ movie.status }}</a></li>
+    {% empty %}
+        <li>No movies yet.</li>
+    {% endfor %}
+
+</ul>
+</body>
+</html>
