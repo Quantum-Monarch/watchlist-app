@@ -25,7 +25,7 @@ This project lets users keep track of films and shows they’ve watched, are wat
 - **Python 3**
 - **Django**
 - SQLite (default dev database)
-- HTML/CSS + Django Templates
+- HTML + Django Templates
 
 ---
 
