@@ -62,13 +62,13 @@ python manage.py runserver
 Visit: http://127.0.0.1:8000/
 
 ## 📁 Project Structure
-
+```csharp
 watchlist-app/
 ├── mysite/           # Django project settings
 ├── watchlist/        # App with models, views, URLs
 ├── templates/        # HTML files
-├── static/           # Static files (if used)
 └── requirements.txt  # Project dependencies
+```
 
 ##  📌 Notes
 
