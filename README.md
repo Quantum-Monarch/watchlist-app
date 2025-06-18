@@ -64,10 +64,14 @@ Visit: http://127.0.0.1:8000/
 ## 📁 Project Structure
 ```csharp
 watchlist-app/
-├── mysite/           # Django project settings
-├── watchlist/        # App with models, views, URLs
-├── templates/        # HTML files
-└── requirements.txt  # Project dependencies
+├── watchlist/        # Django app with models, views, urls
+├── mysite/           # Project-level settings and configuration
+├── templates/        # HTML templates
+├── manage.py         # Django’s command-line utility
+├── requirements.txt  # List of Python dependencies
+├── README.md         # Project overview and instructions
+└── LICENSE           # License information
+
 ```
 
 ##  📌 Notes
