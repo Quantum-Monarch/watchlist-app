@@ -9,33 +9,26 @@ This project lets users keep track of films and shows they’ve watched, are wat
 
 ## 🚀 Features
 
-- ✅ User sign up, log in, log out(with custom views and flash messages)
-- 🎞️ add user movies or series to collection of films
-- ➕ Add/remove items from your personal watchlist
-- ✏️ Update watchlist entries
-- Edit and delete watchlist entries
-- Template inheritance and basic navigation bar
-- Flash messages for user feedback
-- Separate views for Movies and Series
-- Manual form setup using Django ModelForms
-- 🔁 Dynamic interface based on watchlist state
+- ✅ **User Authentication**: Signup, login, logout with custom views and feedback flash messages  
+- 🎞️ **Movie & Series Library**: Browse, add, edit, and delete items  
+- 📝 **Manual Entry Forms**: Users can add movies and series using Django ModelForms  
+- 🔁 **CRUD Interface**: Full create, read, update, delete workflow for watchlist entries  
+- 🧩 **Template Inheritance**: Shared base templates with clear structure and navigation  
+- 🗣️ **Flash Messages**: Feedback upon actions like adding, editing, logging in/out
 
 ---
-## 🧠 Purpose and Learning Goals
+## 💡 What I Learned
 
-This app was built as a practical project to reinforce backend web development concepts using Django. Key areas of focus:
-
-- Understanding and customizing authentication with Django's built-in tools
-- Designing relational models with inheritance (e.g. `Film` → `Movie` or `Series`)
-- Using Django forms to handle user input cleanly
-- Applying template inheritance for maintainable layouts
-- Managing user feedback via Django’s messages framework
-
+1. How to customize Django’s auth system with custom views and logout workflows  
+2. How Django forms and ModelForms handle validation and defaults  
+3. Database design using models, including model inheritance where needed  
+4. The power of template inheritance for reusable layouts and navigation  
+5. How to implement user feedback flows using flash messages  
+6. GitHub workflow: initial commit, feature branches, and project organization
 ---
 
 ## 🛠️ Tech Stack
 
-- **Python 3**
 - **backend:** Django
 - **Database:**SQLite (default dev database)
 - **Auth:** Django's built-in authentication views
@@ -44,7 +37,7 @@ This app was built as a practical project to reinforce backend web development c
 ---
 ## 📸 Screenshots
 ![home page](image.png) 
-![ add movie page](image-1.png)
+![add movie page](image-1.png)
 ![movie detail page with movie added to watchlist](image-2.png)
 ![home page when logged out](image-3.png)
 ![edit page](image-4.png)
