@@ -20,14 +20,14 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from watchlist import views
 
+
+
 app_name = 'watchlist'
 
 urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path('movies/', views.movie_list, name='movie_list'),
     path('series/', views.series_list, name='series_list'),
-    path('films/', views.home_page, name='film_list'),
     path('series/<int:pk>/', views.series_detail, name='series_detail'),
     path('movies/<int:pk>/', views.movie_detail, name='movie_detail'),
     path('signup/',views.signup, name='signup'),
@@ -35,4 +35,7 @@ urlpatterns = [
     path('remove/<int:pk>/', views.remove_from_watchlist, name='remove_from_watchlist'),
     path('edit/<int:pk>/',views.edit, name='edit'),
     path('mylist/', views.mylist, name='mylist'),
+    path('addMovie/', views.add_movie, name='add_movie'),
+    path('addSeries/', views.add_series, name='add_series'),
+
 ]

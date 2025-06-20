@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ series.name }}</title>
-</head>
-<body>
+{% extends "home.html" %}
+{% block title %}{{series.name}} -details{% endblock %}
+{% block content %}
 <h1>{{ series.name }}</h1>
 <p>release: {{ series.release_year }}</p>
 <p>status:{{ series.status }}</p>
@@ -15,7 +11,7 @@
         {% csrf_token %}
         <button type="submit">remove from watchlist</button>
         </form>
-        <a href="{% url 'watchlist:edit' movie.pk %}">edit</a>
+        <a href="{% url 'watchlist:edit' series.pk %}?next={{ next }}">edit</a>
     {% else %}
         <form action="{% url 'watchlist:add_to_watchlist' series.pk %}" method="post">
         {% csrf_token %}
@@ -23,6 +19,5 @@
         </form>
         {% endif %}
 {% endif %}
-<a href="{{ next }}" class="back-button">← Back</a>
-</body>
-</html>
+<a href="{{ next }}">← Back</a>
+{% endblock %}

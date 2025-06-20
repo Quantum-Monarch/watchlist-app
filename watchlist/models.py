@@ -1,4 +1,3 @@
-from django.contrib.auth import forms
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -12,7 +11,7 @@ class Film(models.Model):
     name = models.CharField(max_length=100)
     release_year = models.IntegerField(default=1999)
     status=models.CharField(max_length=100,choices=Status_CHOICES)
-    rating=models.FloatField(default=0)
+    rating=models.FloatField(default=0.0)
     def __str__(self):
         return self.name
     def get_release_year(self):
@@ -32,10 +31,10 @@ class Series(Film):
         ("unknown", "to be determined"),
         ("completed", "finished airing"),
     ]
-    current_episode=models.IntegerField()
-    number_of_seasons = models.IntegerField()
-    number_of_episodes = models.IntegerField()
-    next_release_date=models.CharField(choices=upcoming_CHOICES,max_length=100)
+    current_episode=models.IntegerField(default=0)
+    number_of_seasons = models.IntegerField(default=2)
+    number_of_episodes = models.IntegerField(default=20)
+    next_release_date=models.CharField(choices=upcoming_CHOICES,max_length=100 ,default="unknown")
     def get_next_release_date(self):
         return self.next_release_date
     def get_current_episode(self):

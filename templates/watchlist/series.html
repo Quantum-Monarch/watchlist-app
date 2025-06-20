@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My Series</title>
-</head>
-<body>
+{% extends "home.html" %}
+{% block content %}
 <h1>Series</h1>
 <ul>
     {% for item in series %}
@@ -14,5 +9,4 @@
     {% endfor %}
 
 </ul>
-</body>
-</html>
+{% endblock %}

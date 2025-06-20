@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ movie.name }}</title>
-</head>
-<body>
+{% extends "home.html" %}
+{% block title %}{{movie.name}} -details{% endblock %}
+{% block content %}
 <h1>{{ movie.name }}</h1>
 <p>release: {{ movie.release_year }}</p>
 <p>status:{{ movie.status }}</p>
@@ -24,5 +20,4 @@
         {% endif %}
 {% endif %}
 <a href="{{ next }}">← Back</a>
-</body>
-</html>
+{% endblock %}
