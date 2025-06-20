@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 
@@ -22,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-q^1o$$ixr)at_iahzk)3$r4qh-%j++ms2ng5gvq2ic1ynozfbg'
+SECRET_KEY = os.getenv("SECRET_KEY","fallback-secret-key") #'django-insecure-q^1o$$ixr)at_iahzk)3$r4qh-%j++ms2ng5gvq2ic1ynozfbg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG =os.getenv("DEBUG", "True") == True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -126,3 +126,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL='/'
+STATIC_ROOT=os.path.join(BASE_DIR, 'staticfiles')
