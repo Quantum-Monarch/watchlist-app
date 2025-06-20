@@ -5,6 +5,9 @@ A personal movie and series tracking app built with Django.
 
 This project lets users keep track of films and shows they’ve watched, are watching, or plan to watch — complete with status updates, ratings, and progress tracking for series.
 
+🚀 **Deployed Application:**  
+🔗 [Click here to view the live app](https://watchlist-app-2.onrender.com/)
+
 ---
 
 ## 🚀 Features
