@@ -1,1 +1,1 @@
-web: gunicorn watchlist.wsgi
+web: gunicorn mysite.wsgi
