@@ -9,26 +9,45 @@ This project lets users keep track of films and shows they’ve watched, are wat
 
 ## 🚀 Features
 
-- ✅ User authentication (sign up, log in, log out)
-- 🎞️ Browse a catalog of movies and series
+- ✅ User sign up, log in, log out(with custom views and flash messages)
+- 🎞️ add user movies or series to collection of films
 - ➕ Add/remove items from your personal watchlist
-- ✏️ Update watchlist entries with:
-  - Viewing status (Watching, Completed, Plan to Watch)
-  - Personal rating
-  - Current episode (for series)
+- ✏️ Update watchlist entries
+- Edit and delete watchlist entries
+- Template inheritance and basic navigation bar
+- Flash messages for user feedback
+- Separate views for Movies and Series
+- Manual form setup using Django ModelForms
 - 🔁 Dynamic interface based on watchlist state
+
+---
+## 🧠 Purpose and Learning Goals
+
+This app was built as a practical project to reinforce backend web development concepts using Django. Key areas of focus:
+
+- Understanding and customizing authentication with Django's built-in tools
+- Designing relational models with inheritance (e.g. `Film` → `Movie` or `Series`)
+- Using Django forms to handle user input cleanly
+- Applying template inheritance for maintainable layouts
+- Managing user feedback via Django’s messages framework
 
 ---
 
 ## 🛠️ Tech Stack
 
 - **Python 3**
-- **Django**
-- SQLite (default dev database)
-- HTML + Django Templates
+- **backend:** Django
+- **Database:**SQLite (default dev database)
+- **Auth:** Django's built-in authentication views
+- **frontend** HTML + Django Templates
 
 ---
-
+## 📸 Screenshots
+![home page](image.png) 
+![ add movie page](image-1.png)
+![movie detail page with movie added to watchlist](image-2.png)
+![home page when logged out](image-3.png)
+![edit page](image-4.png)
 ## ⚙️ Setup Instructions
 
 ### 1. Clone the repository
@@ -83,6 +102,10 @@ Fully built using function-based views and session handling.
 ## 🧠 Why I Built This
 
 This started as a personal learning project to dig into Django more deeply. What started simple ended up teaching me a lot about user session handling, model relationships, view logic, and Django’s quirks with redirects. If you’ve ever wanted to scream at a back button, this app will make you feel seen 😂.
+
+## 🙋‍♂️ Author
+Kent Woiso — Built this project while learning Django.
+Feel free to reach out on GitHub or email if you’re reviewing my portfolio!
 
 ## 🪪 License
 

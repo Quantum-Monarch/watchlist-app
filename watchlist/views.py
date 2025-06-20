@@ -110,7 +110,7 @@ def edit(request,pk):
         else:
             form = UserListItemForm(instance=film)
 
-    return render(request,'watchlist/edit.html',{'form':form})
+    return render(request,'watchlist/edit.html',{'form':form, 'film':film})
 
 def add_movie(request):
     if request.method == 'POST':
