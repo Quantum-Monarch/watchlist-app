@@ -17,14 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from watchlist import views
-from watchlist.views import newlogout
+from watchlist.views import NewLogout
 
 urlpatterns = [
     path('', views.home_page, name='home'),
     path('admin/', admin.site.urls),
     path('watchlist/',include('watchlist.urls','watchlist')),
     path('accounts/',include('django.contrib.auth.urls')),
-    path('logout/', newlogout.as_view(), name='logout'),
+    path('logout/', NewLogout.as_view(), name='logout'),
 
 
 ]

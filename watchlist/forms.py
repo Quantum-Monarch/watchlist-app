@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Movies, Series
+from .models import Movies, Series, UserList
 
 
 class UserListItemForm(forms.ModelForm):
@@ -21,3 +21,8 @@ class AddSeriesForm(forms.ModelForm):
     class Meta:
         model = Series
         fields = ['name','release_year','rating','status','number_of_episodes','number_of_seasons','next_release_date']
+
+class MakePublic(forms.ModelForm):
+    class Meta:
+        model = UserList
+        fields=['name']

@@ -37,5 +37,10 @@ urlpatterns = [
     path('mylist/', views.mylist, name='mylist'),
     path('addMovie/', views.add_movie, name='add_movie'),
     path('addSeries/', views.add_series, name='add_series'),
+    path('makePublic/', views.make_public, name='make_public'),
+    path('makeprivate/', views.make_private, name='make_private'),
+    path('watchlist/<int:pk>', views.watchlist, name='thiswatchlist'),
+    path('communitylist/', views.community_list, name='community_list'),
+    path('search/',views.search_view, name='search_view'),
 
 ]

@@ -12,6 +12,7 @@ class Film(models.Model):
     release_year = models.IntegerField(default=1999)
     status=models.CharField(max_length=100,choices=Status_CHOICES)
     rating=models.FloatField(default=0.0)
+    tmdb_id=models.IntegerField(null=True,blank=True)
     def __str__(self):
         return self.name
     def get_release_year(self):
@@ -43,9 +44,15 @@ class Series(Film):
         return self.number_of_seasons
     def get_number_of_episodes(self):
         return self.number_of_episodes
+class UserList(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    ispublic = models.BooleanField(default=False)
+    name = models.CharField(max_length=100)
 
 class UserListItem(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    userlist = models.ForeignKey(UserList,related_name='items', on_delete=models.CASCADE,null=True,blank=True)
     film=models.ForeignKey(Film,on_delete=models.CASCADE)
     added_on = models.DateTimeField(auto_now_add=True)
+
+
 

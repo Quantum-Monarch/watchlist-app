@@ -1,26 +1,11 @@
 {% extends "home.html" %}
 {% block content %}
-    {% if user_items.ispublic == False %}
-<form action="{% url 'watchlist:make_public' %}" method="post">
-    {% csrf_token %}
-    <button type="submit">make public</button>
-</form>
-    {% else %}
-<form action="{% url 'watchlist:make_private' %}" method="post">
-    {% csrf_token %}
-    <button type="submit">make private</button>
-</form>
-    {% endif %}
-<h1>My list</h1>
+<h1>Public Lists</h1>
 <ul>
-    {% for item in page_obj %}
-        {% if item.movies %}
-            <li><a href="{% url 'watchlist:movie_detail' item.pk %}?next={{ request.path }}">{{ item.name }} ({{ item.release_year }}) -Rating: {{ item.rating }} -Status:{{ item.status }}</a></li>
-        {% elif item.series %}
-            <li><a href="{% url 'watchlist:series_detail' item.pk %}?next={{ request.path }}">{{ item.name }} ({{ item.release_year }}) -Rating: {{ item.rating }} -Status:{{ item.status }}</a></li>
-        {% endif %}
+    {% for userlist in page_obj %}
+    <li><a href="{% url 'watchlist:thiswatchlist' userlist.pk %}?next={{ request.path }}"> {{ userlist.name }}</a></li>
     {% empty %}
-        <li>No films yet, add movies or series to your list</li>
+        <li>No lists yet.</li>
     {% endfor %}
 </ul>
 <nav aria-label="Page navigation">
