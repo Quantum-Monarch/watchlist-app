@@ -1,0 +1,9 @@
+{% extends "home.html" %}
+{% block title %}{{user.name}} Profile{% endblock %}
+{% block content %}
+   <h1>Welcome {{ user.name }}</h1>
+<p>number of films in watchlist: {{ count }}</p>
+<p>number of films watched:{{ watchedcount }}</p>
+<a href="{% url 'watchlist:password_change' %}?next={{ next }}">Change Password</a>
+
+{% endblock %}

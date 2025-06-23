@@ -39,7 +39,9 @@
         <li class="nav-item"><a class="nav-item" href="{% url 'watchlist:community_list' %}">Community lists|</a></li>
          <li class="nav-item"><a class="nav-item" href="{% url 'watchlist:search_view' %}">search|</a></li>
 
+
         {% if user.is_authenticated %}
+            <li class="nav-item"><a class="nav-item" href="{% url 'watchlist:profile' %}">profile|</a></li>
             <li class="nav-item"><a class="nav-item" href="{% url 'watchlist:mylist' %}">My list</a></li>
             <li><form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
@@ -76,16 +78,41 @@
 {% block content %}
 <h1>library</h1>
 <ul>
-    {% for item in films %}
+    {% for item in page_obj %}
     {% if item.movies %}
-        <li><a href="{% url 'watchlist:movie_detail' item.pk %}?next={{ request.path }}">{{ item.name }} ({{ item.release_year }}) -Rating: {{ item.rating }} -Status:{{ item.status }}</a></li>
+        <li><a href="{% url 'watchlist:movie_detail' item.pk %}?next={{ request.path }}">{{ item.name }} ({{ item.release_year }}) </a></li>
     {% elif item.series %}
-        <li><a href="{% url 'watchlist:series_detail' item.pk %}?next={{ request.path }}">{{ item.name }} ({{ item.release_year }}) -Rating: {{ item.rating }} -Status:{{ item.status }}</a></li>
+        <li><a href="{% url 'watchlist:series_detail' item.pk %}?next={{ request.path }}">{{ item.name }} ({{ item.release_year }}) </a></li>
     {% endif %}
     {% empty %}
         <li>No films yet.</li>
     {% endfor %}
 </ul>
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center mt-4">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">Previous</span>
+            </li>
+        {% endif %}
+        <li class="page-item disabled">
+            <span class="page-link"> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} </span>
+        </li>
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">Next</span>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
 {% endblock %}
 </main>
 </div>

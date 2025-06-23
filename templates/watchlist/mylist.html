@@ -14,10 +14,10 @@
 <h1>My list</h1>
 <ul>
     {% for item in page_obj %}
-        {% if item.movies %}
-            <li><a href="{% url 'watchlist:movie_detail' item.pk %}?next={{ request.path }}">{{ item.name }} ({{ item.release_year }}) -Rating: {{ item.rating }} -Status:{{ item.status }}</a></li>
-        {% elif item.series %}
-            <li><a href="{% url 'watchlist:series_detail' item.pk %}?next={{ request.path }}">{{ item.name }} ({{ item.release_year }}) -Rating: {{ item.rating }} -Status:{{ item.status }}</a></li>
+        {% if item.film.movies %}
+            <li><a href="{% url 'watchlist:movie_detail' item.film.movies.pk %}?next={{ request.path }}">{{ item.film.name }} ({{ item.film.release_year }}) -Rating: {{ item.rating }} -Status:{{ item.status }}</a></li>
+        {% elif item.film.series %}
+            <li><a href="{% url 'watchlist:series_detail' item.film.series.pk %}?next={{ request.path }}">{{ item.film.name }} ({{ item.film.release_year }}) -Rating: {{ item.rating }} -Status:{{ item.status }}</a></li>
         {% endif %}
     {% empty %}
         <li>No films yet, add movies or series to your list</li>

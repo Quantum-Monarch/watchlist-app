@@ -3,7 +3,7 @@
 <h1>Series</h1>
 <ul>
     {% for item in page_obj %}
-        <li><a href="{% url 'watchlist:series_detail' item.pk %}?next={{ request.path }}">{{ item.name }} ({{ item.release_year }}) -Rating:{{ item.rating }} -Status:{{ item.status }}</a></li>
+        <li><a href="{% url 'watchlist:series_detail' item.pk %}?next={{ request.path }}">{{ item.name }} ({{ item.release_year }}) </a></li>
     {% empty %}
         <li>No series yet.</li>
     {% endfor %}

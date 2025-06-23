@@ -42,5 +42,6 @@ urlpatterns = [
     path('watchlist/<int:pk>', views.watchlist, name='thiswatchlist'),
     path('communitylist/', views.community_list, name='community_list'),
     path('search/',views.search_view, name='search_view'),
-
+    path('profile/', views.profile, name='profile'),
+    path('password_change/', views.CustomPassChange.as_view(), name='password_change'),
 ]
