@@ -18,7 +18,7 @@ This project lets users keep track of films and shows they’ve watched, are wat
 - 🔁 **CRUD Interface**: Full create, read, update, delete workflow for watchlist entries  
 - 🧩 **Template Inheritance**: Shared base templates with clear structure and navigation  
 - 🗣️ **Flash Messages**: Feedback upon actions like adding, editing, logging in/out
-
+-  **External API intergration**:TMDB integration with search & pagination
 ---
 
 ## 🔍 TMDB Search & Pagination (How It Works)
@@ -107,7 +107,7 @@ watchlist-app/
 
 The project stores the user’s navigation path to support smoother UX when returning to pages.
 The app includes logic to differentiate between movies and series and handle each appropriately.
-Fully built using function-based views and session handling,This app integrates with the TMDB API to allow users to search for real movies.
+Fully built using function-based views and session handling,Used TMDB’s RESTful API to fetch, cache, and display film data in a Django app, enabling dynamic search and interaction.
 
 ## 🧠 Why I Built This
 
