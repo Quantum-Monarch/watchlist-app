@@ -20,6 +20,20 @@ This project lets users keep track of films and shows they’ve watched, are wat
 - 🗣️ **Flash Messages**: Feedback upon actions like adding, editing, logging in/out
 
 ---
+
+## 🔍 TMDB Search & Pagination (How It Works)
+This app integrates with the TMDB API to allow users to search for real movies. To balance performance with API limitations (and keep within free-tier server constraints), search results are handled as follows:
+
+🔎 When a user searches, the app requests only the first page of results (20 items) from TMDB.
+
+📄 These results are stored in the session and paginated locally (e.g., 10 per page).
+
+💾 This approach avoids excessive API calls and keeps server memory usage low on platforms like Render free tier.
+
+⚠️ Note: Only a portion of TMDB’s full search results are shown for now. This is a conscious trade-off to support demo use without hitting TMDB or server limits.
+
+---
+
 ## 💡 What I Learned
 
 1. How to customize Django’s auth system with custom views and logout workflows  
@@ -39,11 +53,11 @@ This project lets users keep track of films and shows they’ve watched, are wat
 
 ---
 ## 📸 Screenshots
-![home page](image.png) 
-![add movie page](image-1.png)
-![movie detail page with movie added to watchlist](image-2.png)
-![home page when logged out](image-3.png)
-![edit page](image-4.png)
+![home page](image-5.png) 
+![search results](image-6.png)
+![added search item to watchlist](image-9.png)
+![home page next page](image-7.png)
+![profile page](image-8.png)
 ## ⚙️ Setup Instructions
 
 ### 1. Clone the repository
@@ -93,11 +107,11 @@ watchlist-app/
 
 The project stores the user’s navigation path to support smoother UX when returning to pages.
 The app includes logic to differentiate between movies and series and handle each appropriately.
-Fully built using function-based views and session handling.
+Fully built using function-based views and session handling,This app integrates with the TMDB API to allow users to search for real movies.
 
 ## 🧠 Why I Built This
 
-This started as a personal learning project to dig into Django more deeply. What started simple ended up teaching me a lot about user session handling, model relationships, view logic, and Django’s quirks with redirects. If you’ve ever wanted to scream at a back button, this app will make you feel seen 😂.
+This started as a personal learning project to dig into Django more deeply. What started simple ended up teaching me a lot about user session handling, model relationships, view logic, forms, and Django’s quirks with redirects. If you’ve ever wanted to scream at a back button, this app will make you feel seen 😂.
 
 ## 🙋‍♂️ Author
 Kent Woiso — Built this project while learning Django.
