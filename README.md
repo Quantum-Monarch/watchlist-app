@@ -58,6 +58,7 @@ This app integrates with the TMDB API to allow users to search for real movies. 
 ![added search item to watchlist](image-9.png)
 ![home page next page](image-7.png)
 ![profile page](image-8.png)
+![passed tests](image-10.png)
 ## ⚙️ Setup Instructions
 
 ### 1. Clone the repository
