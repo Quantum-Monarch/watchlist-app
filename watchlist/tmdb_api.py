@@ -35,7 +35,7 @@ def save_tmdb_movie(tmdb_movie_data,user_id):
         tmdb_id=tmdb_movie_data['id'],
         defaults={
             'name' :tmdb_movie_data['title'],
-            'release_year' :tmdb_movie_data['release_date'][:4] if tmdb_movie_data['release_date'] else None
+            'release_year' :int(tmdb_movie_data['release_date'][:4]) if tmdb_movie_data['release_date'] else None
         }
     )
     user_list, created=UserList.objects.get_or_create(
