@@ -4,7 +4,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
 from .models import UserPreferences,Film
-films=Film.objects.all().order_by(id)
+films=Film.objects.all().order_by('id')
 def add_to_selection(top_selection,score,tmdbid):
     if len(top_selection) < 5:
         top_selection[tmdbid] = score
