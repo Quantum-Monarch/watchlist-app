@@ -1,3 +1,5 @@
+from rest_framework.generics import get_object_or_404
+
 from .models import Movies, UserListItem, Film, UserList
 import requests
 
@@ -35,20 +37,29 @@ def save_tmdb_movie(tmdb_movie_data,user_id):
         tmdb_id=tmdb_movie_data['id'],
         defaults={
             'name' :tmdb_movie_data['title'],
-            'release_year' :int(tmdb_movie_data['release_date'][:4]) if tmdb_movie_data['release_date'] else None
+            'release_year' :int(tmdb_movie_data['release_date'][:4]) if tmdb_movie_data['release_date'] else None,
+            'genre' :[g["name"] for g in tmdb_movie_data.get("genres",[])],
+            'production_company' :[p["name"] for p in tmdb_movie_data.get("production_companies",[])],
+            'tmdb_rating' :int(tmdb_movie_data.get('vote_average', 0)),
+            'poster_url' :tmdb_movie_data.get('poster_path'),
         }
     )
+    if created:
+        movie.create_main_vector()
+
+
     user_list, created=UserList.objects.get_or_create(
-        user=user_id,
+        user=user_id.id,
         defaults={'ispublic': False, 'name': 'My Watchlist'}
 
     )
+    film=get_object_or_404(Film, tmdb_id=tmdb_movie_data['id'])
     userlistitem,created= UserListItem.objects.get_or_create(
-        film=movie,
+        film=film,
         defaults={
             'userlist':user_list,
             'rating': tmdb_movie_data['vote_average'],
             'status': 'not set'
         }
     )
-    return userlistitem
+    return film

@@ -3,10 +3,10 @@
 {% block content %}
 <h1>{{ movie.name }}</h1>
 <p>release: {{ movie.release_year }}</p>
-<p>status:{{ useritem.status }}</p>
-<p>rating: {{ useritem.rating }}</p>
 {% if user.is_authenticated %}
     {% if inwatchlist %}
+        <p>status:{{ useritem.status }}</p>
+        <p>rating: {{ useritem.rating }}</p>
         <form action="{% url 'watchlist:remove_from_watchlist' movie.pk %}" method="post">
         {% csrf_token %}
         <button type="submit">remove from watchlist</button>

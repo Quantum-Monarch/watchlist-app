@@ -25,8 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY","fallback-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =os.getenv("DEBUG", "True") == True
-
+#DEBUG =os.getenv("DEBUG", "True") == True
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
@@ -81,9 +81,15 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
 DATABASES = {
-        'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres.ywbapprnvxekzjuohlks',
+        'PASSWORD': 'NTfblU2PwiMZ86jC',
+        'HOST': 'aws-0-us-west-1.pooler.supabase.com',
+        'PORT': '5432',
+    }
 }
-
 
 
 # Password validation
