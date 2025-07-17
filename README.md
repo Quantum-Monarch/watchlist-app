@@ -3,7 +3,7 @@
 
 A personal movie and series tracking app built with Django.
 
-This project lets users keep track of films and shows they’ve watched, are watching, or plan to watch — complete with status updates, ratings, and progress tracking for series.
+This project lets users keep track of films and shows they’ve watched, are watching, or plan to watch — complete with status updates, ratings and provides movie and series recomendations based on users interactions with the content on the site.
 
 🚀 **Deployed Application:**  
 🔗 [Click here to view the live app](https://watchlist-app-2.onrender.com/)
@@ -14,11 +14,12 @@ This project lets users keep track of films and shows they’ve watched, are wat
 
 - ✅ **User Authentication**: Signup, login, logout with custom views and feedback flash messages  
 - 🎞️ **Movie & Series Library**: Browse, add, edit, and delete items  
-- 📝 **Manual Entry Forms**: Users can add movies and series using Django ModelForms  
+- 📝 **Manual Edit Forms**: Users can edit movies and series using Django ModelForms  
 - 🔁 **CRUD Interface**: Full create, read, update, delete workflow for watchlist entries  
 - 🧩 **Template Inheritance**: Shared base templates with clear structure and navigation  
 - 🗣️ **Flash Messages**: Feedback upon actions like adding, editing, logging in/out
--  **External API intergration**:TMDB integration with search & pagination
+-  **External API intergration**:TMDB integration with search & pagination, and database population
+- **Recommendation system**:Used pandas,numpy and scikitlearn libraries to give cosine similarity+vector math computed recomendations per user
 ---
 
 ## 🔍 TMDB Search & Pagination (How It Works)
@@ -38,25 +39,28 @@ This app integrates with the TMDB API to allow users to search for real movies. 
 
 1. How to customize Django’s auth system with custom views and logout workflows  
 2. How Django forms and ModelForms handle validation and defaults  
-3. Database design using models, including model inheritance where needed  
+3. Database design using models, including model inheritance where needed
 4. The power of template inheritance for reusable layouts and navigation  
 5. How to implement user feedback flows using flash messages  
 6. GitHub workflow: initial commit, feature branches, and project organization
+7. how to connect and host a database on a seperate server(supabase) for the website
+8. how to create managment files and run them to populate the database manually and automatically
+9. how to implement my knowledge of pandas in combination with numpy and scikitlearn to create a working system  
 ---
 
 ## 🛠️ Tech Stack
 
-- **backend:** Django
-- **Database:**SQLite (default dev database)
+- **backend:** Django,pandas,numpy,scikitlearn
+- **Database:**postgressql
 - **Auth:** Django's built-in authentication views
-- **frontend** HTML + Django Templates
+- **frontend** HTML + Django Templates+ bootstrap
 
 ---
 ## 📸 Screenshots
-![home page](image-5.png) 
+![home page](image.png) 
 ![search results](image-6.png)
 ![added search item to watchlist](image-9.png)
-![home page next page](image-7.png)
+![home page next page](image-1.png)
 ![profile page](image-8.png)
 ![passed tests](image-10.png)
 ## ⚙️ Setup Instructions
