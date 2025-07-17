@@ -1,6 +1,6 @@
 from django.core.cache import cache
 from django.urls import reverse_lazy
-from .load_data import userprefs,userlists,userlistitems
+
 from .forms import UserListItemForm, UserListItemFormS, MakePublic
 from .models import Movies, Series, Film, UserListItem, UserList, UserPreferences
 from django.shortcuts import render, get_object_or_404, redirect
@@ -106,11 +106,11 @@ def signup(request):
 
 @login_required(login_url='login')
 def mylist(request):
-    user_items, created=userlists.get_or_create(
+    user_items, created=UserList.get_or_create(
         user=request.user,
         defaults={'ispublic': False, 'name': 'My Watchlist'}
     )
-    useritem=userlistitems.filter(userlist=user_items)
+    useritem=UserListItem.filter(userlist=user_items)
     film=[]
     for item in useritem:
         film.append(item)
@@ -120,7 +120,7 @@ def mylist(request):
     return render(request, 'watchlist/mylist.html', {'films': film, 'page_obj': page_obj,'user_items': user_items,'useritem': useritem})
 @login_required(login_url='login')
 def profile(request):
-    user_items=userlistitems.filter(userlist__user=request.user)
+    user_items=UserListItem.filter(userlist__user=request.user)
     user=request.user
     count=user_items.count()
     watchedcount=user_items.filter(status='watched').count()
@@ -133,12 +133,12 @@ def add_to_watchlist(request, pk,b=Film.objects):
     film= b.filter(pk=pk).first()
     if not film:
         film=save_tmdb_movie(get_movie_details_from_tmdb(pk),user)
-    user_items, created=userlists.get_or_create(
+    user_items, created=UserList.get_or_create(
         user=request.user,
         defaults={'ispublic': False, 'name': 'My Watchlist'}
         )
     UserListItem.objects.get_or_create(userlist=user_items, film=film)
-    prefs,created=userprefs.get_or_create(user=user)
+    prefs,created=UserPreferences.get_or_create(user=user)
     prefs.edit_main_vector(film.main_vector)
     messages.success(request, 'added to watchlist')
     if hasattr(film, 'movies'):
@@ -151,12 +151,12 @@ def add_to_watchlist(request, pk,b=Film.objects):
 
 def remove_from_watchlist(request, pk):
     film = get_object_or_404(Film, pk=pk)
-    userlist, created=userlists.get_or_create(
+    userlist, created=UserList.get_or_create(
         user=request.user,
         defaults={'ispublic': False, 'name': 'My Watchlist'}
     )
-    userlistitems.filter(userlist=userlist, film=film).delete()
-    prefs,created=userprefs.get_or_create(user=request.user)
+    UserListItem.filter(userlist=userlist, film=film).delete()
+    prefs,created=UserPreferences.get_or_create(user=request.user)
     prefs.edit_main_vector_remove(film.main_vector)
     messages.success(request, 'removed from watchlist')
     if hasattr(film, 'movies'):
@@ -169,7 +169,7 @@ def remove_from_watchlist(request, pk):
 
 def edit(request, pk):
     film = get_object_or_404(Film, pk=pk)
-    useritem=get_object_or_404(userlistitems,film=film)
+    useritem=get_object_or_404(UserListItem,film=film)
     if hasattr(film, 'movies'):
         film = get_object_or_404(Movies, pk=pk)
         form = UserListItemForm(request.POST, instance=useritem)
@@ -192,7 +192,7 @@ def edit(request, pk):
     return render(request, 'watchlist/edit.html', {'form': form, 'film': film})
 
 def make_public(request):
-    userlist=get_object_or_404(userlists, user=request.user)
+    userlist=get_object_or_404(UserList, user=request.user)
     if request.method == 'POST':
         form=MakePublic(request.POST,instance=userlist)
         if form.is_valid():
@@ -206,7 +206,7 @@ def make_public(request):
     return render(request,'watchlist/makepublic.html', {'form': form})
 def make_private(request):
     if request.method == 'POST':
-        userlist=get_object_or_404(userlists, user=request.user)
+        userlist=get_object_or_404(UserList, user=request.user)
         userlist.ispublic=False
         userlist.save()
         messages.success(request, 'list is private')
@@ -214,14 +214,14 @@ def make_private(request):
 
 
 def community_list(request):
-    user_lists=userlists.filter(ispublic=True)
+    user_lists=UserList.filter(ispublic=True)
     paginator = Paginator(user_lists, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'watchlist/communitylist.html', {'page_obj': page_obj, 'userlists': user_lists})
 def watchlist(request,pk):
-    userlist= get_object_or_404(userlists, pk=pk, ispublic=True)
-    items=userlistitems.select_related('film')
+    userlist= get_object_or_404(UserList, pk=pk, ispublic=True)
+    items=UserListItem.select_related('film')
     films = [item.film for item in items]
     paginator = Paginator(films, 12)
     page_number = request.GET.get('page')
